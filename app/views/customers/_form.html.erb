@@ -1,0 +1,49 @@
+<%= form_for(@customer, :html => {:class => "form form-horizontal" }, :validate=> false) do |f| %>
+
+<fieldset>
+  
+   <%= render('error_messages', :object => f.object ) %>
+   
+  <div class="control-group">
+    <%= f.label "Name:", :class => 'control-label' %>
+    <div class="controls">      
+      <%= f.text_field :name, :class => 'field' %>          
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label "Email:", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' , :error_message=> false %>         
+    </div>
+  </div>
+    
+  <div class="control-group">
+    <%= f.label  "Started At:", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :date_became_customer, :class => 'text_field text-center' %>         
+    </div>
+  </div>
+
+  
+</fieldset>
+       
+<hr/>
+       
+    <fieldset>
+       <legend>Addresses</legend>
+       <%= render('addresses_table', :f => f) %>
+       <%= link_to_add_fields("New Address", f, :addresses, :class => "btn btn-primary", :title => "Add a new Address to the list of Addresses.") %>
+       <p></p>
+     </fieldset>
+   
+     <div class="modal-footer">
+     
+    <%= f.submit("Save", :class => "btn btn-primary", :title => "save") %>
+    
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), customers_path, :class => 'btn' %>
+    
+  </div>
+
+                     
+<% end %>
